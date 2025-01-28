@@ -35,7 +35,15 @@ async def collect_data(city_code='2398'):
         # Парсинг ответа в формате JSON
         data = response.json()
         print(data)  # Вывод результата
-        return data
+
+        # Обработка данных: например, получаем названия товаров
+        products = data.get("data", {}).get("products", [])
+        if not products:
+            return "Нет данных о товарах."
+
+        # Собираем названия товаров
+        product_titles = [product.get("name", "Без названия") for product in products]
+        return "\n".join(product_titles)
     except requests.exceptions.RequestException as e:
         print(f"Ошибка при запросе: {e}")
 
