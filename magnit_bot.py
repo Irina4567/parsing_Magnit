@@ -26,8 +26,8 @@ async def moscow_city(message: types.Message):
 
 
 async def send_data(city_code='', chat_id=''):
-     file = await collect_data(city_code=city_code)
-#     print(file)
+    file = await collect_data(city_code=city_code)
+    print(file)
     await bot.send_message(chat_id, file)
 
 
