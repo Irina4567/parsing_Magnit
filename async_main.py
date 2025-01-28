@@ -5,6 +5,7 @@ import aiohttp
 import aiofiles
 import asyncio
 from aiocsv import AsyncWriter
+import requests
 
 
 async def collect_data(city_code='2398'):
