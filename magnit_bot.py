@@ -34,8 +34,9 @@ async def ekb_city(message: types.Message):
 
 async def send_data(city_code='', chat_id=''):
     file = await collect_data(city_code=city_code)
-    await bot.send_document(chat_id=chat_id, document=open(file, 'rb'))
-    await os.remove(file)
+    print(file)
+#     await bot.send_document(chat_id=chat_id, document=open(file, 'rb'))
+#     await os.remove(file)
 
 
 if __name__ == '__main__':
