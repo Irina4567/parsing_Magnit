@@ -38,7 +38,7 @@ async def collect_data(city_code='2398'):
     except requests.exceptions.RequestException as e:
         print(f"Ошибка при запросе: {e}")
 
-    return true
+    return 'YES'
 
 
 async def main():
