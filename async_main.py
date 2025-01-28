@@ -8,22 +8,34 @@ from aiocsv import AsyncWriter
 
 
 async def collect_data(city_code='2398'):
-    cur_time = datetime.datetime.now().strftime('%d_%m_%Y_%H_%M')
-    ua = UserAgent()
+    # URL API WB
+    url = "https://catalog.wb.ru/catalog/pants/v2/catalog"
 
-    headers = {
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-        'User-Agent': ua.random
+    # Параметры запроса
+    params = {
+        "ab_testing": "false",
+        "appType": "1",
+        "cat": "8127",
+        "curr": "rub",
+        "dest": "123589442",
+        "hide_dtype": "10",
+        "lang": "ru",
+        "page": "1",
+        "sort": "popular",
+        "spp": "30",
+        "xsubject": "147",
     }
 
+    try:
+        # Отправка GET-запроса
+        response = requests.get(url, params=params)
+        response.raise_for_status()  # Проверка на ошибки HTTP
 
-    async with aiohttp.ClientSession() as session:
-
-        response = await session.get(url='https://www.wildberries.ru/',
-                                     headers=headers)
-        soup = BeautifulSoup(await response.text(), 'lxml')
-
-        print(soup)
+        # Парсинг ответа в формате JSON
+        data = response.json()
+        print(data)  # Вывод результата
+    except requests.exceptions.RequestException as e:
+        print(f"Ошибка при запросе: {e}")
 
     return true
 
