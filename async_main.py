@@ -35,10 +35,11 @@ async def collect_data(city_code='2398'):
         # Парсинг ответа в формате JSON
         data = response.json()
         print(data)  # Вывод результата
+        return data
     except requests.exceptions.RequestException as e:
         print(f"Ошибка при запросе: {e}")
 
-    return 'YES'
+    return 'NO'
 
 
 async def main():
